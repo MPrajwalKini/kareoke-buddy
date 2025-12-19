@@ -1,65 +1,84 @@
-import Image from "next/image";
+'use client';
+
+import React from 'react';
+import DragDropZone from '@/components/DragDropZone';
+import UnifiedPlayer from '@/components/UnifiedPlayer';
+import PlaylistQueue from '@/components/PlaylistQueue';
+import SearchBar from '@/components/SearchBar';
+import { Mic2, Music2, Cast, SkipForward, PlayCircle } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-black text-white p-6 relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto h-[calc(100vh-3rem)] grid grid-rows-[auto_1fr] gap-6">
+        {/* Header */}
+        <header className="flex items-center justify-between py-2 border-b border-white/10 pb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center shadow-lg shadow-purple-900/40">
+              <Mic2 className="text-white" size={24} />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                Antigravity Karaoke
+              </h1>
+              <span className="text-xs text-primary font-medium tracking-wider uppercase">Pro Edition</span>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            {/* Toolbars could go here */}
+          </div>
+        </header>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-0">
+
+          {/* Left/Top: Player Stage */}
+          <div className="lg:col-span-8 flex flex-col gap-6 min-h-0">
+            <div className="flex-1 bg-black/40 rounded-2xl border border-white/10 p-1 flex flex-col justify-center relative overflow-hidden group">
+              {/* Spotlight effect */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+              <UnifiedPlayer />
+            </div>
+
+            {/* Controls Area (Reduced) */}
+            <div className="h-20 glass-panel rounded-xl p-4 flex items-center justify-center">
+              <div className="text-center text-gray-500 text-sm">
+                Playback Controls Coming Soon
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Playlist */}
+          <div className="lg:col-span-4 glass-panel rounded-2xl p-6 flex flex-col min-h-0 bg-black/40">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-semibold flex items-center gap-2">
+                <Music2 size={20} className="text-primary" />
+                Up Next
+              </h2>
+              <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-400">Queue</span>
+            </div>
+
+            <SearchBar />
+
+            <div className="flex-1 min-h-0 mb-4">
+              <PlaylistQueue />
+            </div>
+
+            <div className="mt-auto pt-4 border-t border-white/10">
+              <DragDropZone compact={true} />
+            </div>
+          </div>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
