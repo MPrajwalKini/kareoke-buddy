@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kareoke Buddy
+
+**The ultimate AI-driven, hybrid karaoke companion.**
+
+Kareoke Buddy helps you organize, queue, and play your karaoke library seamlessly. Whether you have thousands of local video files or rely on YouTube, this app unifies them into a single, beautiful interface that works on your Laptop, Tablet, and Android Phone.
+
+## Features
+
+*   **Hybrid Playback**: Mix local video files (`.mp4`, `.mkv`, etc.) and YouTube videos in the same queue.
+*   **Drag & Drop Import**: Simply drag your entire karaoke folder or individual files into the app.
+*   **Smart Queue**: Reorder songs, remove them, or play immediately. The queue persists even if you close the app.
+*   **Mobile Optimized**: Fully responsive design that works as a Native Android App (via Capacitor) or a Web App.
+*   **Glassmorphism UI**: A modern, dark-themed aesthetic with dynamic background effects.
+
+## Architecture
+
+This project is a monorepo built with modern web technologies:
+
+*   **Client**: `apps/kareoke-buddy` (Next.js 15, React 19, TailwindCSS)
+*   **Mobile Runtime**: Capacitor 7 (Wraps the Next.js static export for Android)
+*   **State Management**: Zustand (for persistent queue management)
 
 ## Getting Started
 
-First, run the development server:
+### Web & Development
+To run the app in your browser for development or desktop use:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  Navigate to the project folder:
+    ```bash
+    cd apps/kareoke-buddy
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+4.  Open [http://localhost:3000](http://localhost:3000).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Android Mobile App
+To build and install the native Android application:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  **Prerequisites**:
+    *   **Android Studio** (Latest version recommended)
+    *   **Java 21** (Required for Gradle 8.5+)
+    *   **Node.js 20+**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  **Build Process**:
+    Run this command whenever you change the code. It builds the website and syncs it to the Android project:
+    ```bash
+    cd apps/kareoke-buddy
+    npm run build
+    npx cap sync
+    ```
 
-## Learn More
+3.  **Run on Device**:
+    Open the project in Android Studio:
+    ```bash
+    npx cap open android
+    ```
+    *   Wait for Gradle to finish syncing.
+    *   Connect your phone (enable USB Debugging) or create an Emulator.
+    *   Click the green **Play (▶)** button.
 
-To learn more about Next.js, take a look at the following resources:
+<<<<<<< HEAD
+### ☁️ Vercel Deployment (Web)
+This app is optimized for Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Framework Preset**: Next.js
+2.  **Build Command**: `next build`
+3.  **Output Directory**: `out` (Important! This differs from default).
+4.  **Root Directory**: `apps/kareoke-buddy`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Typical Workflow
+=======
+## Typical Workflow
+>>>>>>> ee183c8b823a6df8f715490328c362597e72450a
 
-## Deploy on Vercel
+1.  **Coding**: Make changes in `apps/kareoke-buddy/src`. The web version (`npm run dev`) has Hot Module Replacement (HMR) for fast feedback.
+2.  **Testing Mobile**: Use Chrome DevTools (Device Mode) to simulate mobile viewports.
+3.  **Deploying to Phone**: Run `npm run build && npx cap sync`, then hitting Play in Android Studio is only needed if you changed native config. usually just re-running the app updates the web content if configured for live reload, but for static apps, a rebuild is required.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   **Importing Folders on Android**: Due to security restrictions in Android WebViews, the "Select Folder" button may not work on some devices. Use "Add Files" and select multiple files (long press) instead.
+*   **Excel Playlists**: The app supports importing `.xlsx` files with columns: `Order`, `Source`, `Song Name`, `Artist`, etc.
+
