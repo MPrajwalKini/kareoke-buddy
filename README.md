@@ -16,7 +16,7 @@ Kareoke Buddy helps you organize, queue, and play your karaoke library seamlessl
 
 This project is a monorepo built with modern web technologies:
 
-*   **Client**: `apps/kareoke-buddy` (Next.js 15, React 19, TailwindCSS)
+*   **Client**: `kareoke-buddy` (Next.js 15, React 19, TailwindCSS)
 *   **Mobile Runtime**: Capacitor 7 (Wraps the Next.js static export for Android)
 *   **State Management**: Zustand (for persistent queue management)
 
@@ -27,7 +27,7 @@ To run the app in your browser for development or desktop use:
 
 1.  Navigate to the project folder:
     ```bash
-    cd apps/kareoke-buddy
+    cd kareoke-buddy
     ```
 2.  Install dependencies:
     ```bash
@@ -50,7 +50,7 @@ To build and install the native Android application:
 2.  **Build Process**:
     Run this command whenever you change the code. It builds the website and syncs it to the Android project:
     ```bash
-    cd apps/kareoke-buddy
+    cd kareoke-buddy
     npm run build
     npx cap sync
     ```
@@ -71,11 +71,11 @@ This app is optimized for Vercel.
 1.  **Framework Preset**: Next.js
 2.  **Build Command**: `next build`
 3.  **Output Directory**: `out` (Important! This differs from default).
-4.  **Root Directory**: `apps/kareoke-buddy`
+4.  **Root Directory**: `kareoke-buddy`
 
 ## Typical Workflow
 
-1.  **Coding**: Make changes in `apps/kareoke-buddy/src`. The web version (`npm run dev`) has Hot Module Replacement (HMR) for fast feedback.
+1.  **Coding**: Make changes in `kareoke-buddy/src`. The web version (`npm run dev`) has Hot Module Replacement (HMR) for fast feedback.
 2.  **Testing Mobile**: Use Chrome DevTools (Device Mode) to simulate mobile viewports.
 3.  **Deploying to Phone**: Run `npm run build && npx cap sync`, then hitting Play in Android Studio is only needed if you changed native config. usually just re-running the app updates the web content if configured for live reload, but for static apps, a rebuild is required.
 
