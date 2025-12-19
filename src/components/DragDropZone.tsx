@@ -185,7 +185,7 @@ function InternalZone({ compact }: { compact: boolean }) {
                         {/* Folder Import (Desktop Only - Mobile/Tablets don't support webkitdirectory well) */}
                         <div
                             onClick={() => folderInputRef.current?.click()}
-                            className="hidden md:flex flex-col items-center gap-1 cursor-pointer p-2 rounded-lg hover:bg-white/5 transition-colors flex-1"
+                            className="flex flex-col items-center gap-1 cursor-pointer p-2 rounded-lg hover:bg-white/5 transition-colors flex-1"
                         >
                             <div className="p-2 bg-white/5 rounded-full text-blue-400">
                                 <FolderOpen size={16} />
