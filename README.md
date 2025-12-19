@@ -73,10 +73,7 @@ This app is optimized for Vercel.
 3.  **Output Directory**: `out` (Important! This differs from default).
 4.  **Root Directory**: `apps/kareoke-buddy`
 
-## 🛠️ Typical Workflow
-=======
 ## Typical Workflow
->>>>>>> ee183c8b823a6df8f715490328c362597e72450a
 
 1.  **Coding**: Make changes in `apps/kareoke-buddy/src`. The web version (`npm run dev`) has Hot Module Replacement (HMR) for fast feedback.
 2.  **Testing Mobile**: Use Chrome DevTools (Device Mode) to simulate mobile viewports.
